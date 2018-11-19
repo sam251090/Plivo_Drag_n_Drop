@@ -64,7 +64,7 @@ public void messaging_Send_An_SMS(WebDriver driver) throws InterruptedException,
 	
 		wait.until(ExpectedConditions.visibilityOf(ee.send_An_SMS_Sync_Node_Before));
 		ee.SMS_Phone_no.sendKeys("1234567891");
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 
 		ee.SMS_Messagetext.sendKeys("Hello World");
 		Thread.sleep(2000);
@@ -89,11 +89,13 @@ public void messaging_Send_An_Email(WebDriver driver, int x, int y) throws Inter
 	Elements ee=PageFactory.initElements(driver, Elements.class);
 	
 	ee.send_An_Email_Button.click();
-	Thread.sleep(5000);
+	Thread.sleep(2000);
 	
 	WebElement email_Panel=ee.send_An_Email_Panel;
 	
 	action.panel_DragNDrop(driver, email_Panel, x, y);
+	
+	wait.until(ExpectedConditions.visibilityOf(ee.email_Smtp_Host));
 	
 	ee.email_Smtp_Host.sendKeys("smtp.gmail.com");
 	ee.email_Port.sendKeys("465");
@@ -112,17 +114,17 @@ public void basic_Exit(WebDriver driver, int exit_Module_no, int x, int y) throw
 	Elements ee=PageFactory.initElements(driver, Elements.class);
 	
 	ee.Basic_Button.click();
-	Thread.sleep(3000);
+	Thread.sleep(2000);
 	
 	ee.add_Exit.click();
-	Thread.sleep(3000);
+	Thread.sleep(2000);
 	
 	WebElement Exit_app_Panel=driver.findElement(By.xpath("(//*[contains(text(),'Exit App')])["+exit_Module_no+"]"));
 	
 //	WebElement exit=ee.Exit_app_Panel1;
 	
 	action.panel_DragNDrop(driver, Exit_app_Panel, x, y);
-	Thread.sleep(5000);
+	Thread.sleep(2000);
 }
 
 public void sms_NS_To_Email_Connector(WebDriver driver) throws InterruptedException, NullPointerException, MalformedURLException{
@@ -136,7 +138,7 @@ public void sms_NS_To_Email_Connector(WebDriver driver) throws InterruptedExcept
 	WebElement dragAfter2=ee.email_After;
 	
 	action.connector(driver, dragBefore1, dragAfter1, dragBefore2, dragAfter2);
-	Thread.sleep(5000);
+	Thread.sleep(2000);
 }
 
 public void sms_Sent_To_Exit(WebDriver driver) throws InterruptedException, NullPointerException, MalformedURLException{
@@ -150,7 +152,6 @@ public void sms_Sent_To_Exit(WebDriver driver) throws InterruptedException, Null
 	WebElement dragAfter2=ee.exit_After1;
 	
 	action.connector(driver, dragBefore1, dragAfter1, dragBefore2, dragAfter2);
-	Thread.sleep(5000);
 }
 
 public void email_Sent_To_Exit(WebDriver driver) throws InterruptedException, NullPointerException, MalformedURLException{
@@ -164,7 +165,6 @@ public void email_Sent_To_Exit(WebDriver driver) throws InterruptedException, Nu
 	WebElement dragAfter2=ee.exit_After2;
 	
 	action.connector(driver, dragBefore1, dragAfter1, dragBefore2, dragAfter2);
-	Thread.sleep(5000);
 }
 
 public void email_NotSent_Exit(WebDriver driver) throws InterruptedException, NullPointerException, MalformedURLException{
